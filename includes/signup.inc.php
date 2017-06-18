@@ -5,6 +5,7 @@ include '../dbh.php';
 
 $first = $_POST['first'];
 $last = $_POST['last'];
+$email = $_POST['email'];
 $uid = $_POST['uid'];
 $pwd = $_POST['pwd'];
 
@@ -13,6 +14,10 @@ if(empty($first)){
     exit();
 }
 if(empty($last)){
+    header("Location: ../signup.php?error=empty");
+    exit();
+}
+if(empty($email)){
     header("Location: ../signup.php?error=empty");
     exit();
 }
@@ -32,9 +37,16 @@ else{
         header("Location: ../signup.php?error=username");
         exit();
     }
+    $sql="SELECT email FROM user WHERE email='$email'";
+    $result = mysqli_query($conn, $sql);
+    $emailcheck = mysqli_num_rows($result);
+    if($emailcheck > 0){
+        header("Location: ../signup.php?error=email");
+        exit();
+    }
     else{
-        $sql = "INSERT INTO user (first, last, uid, pwd) 
-        VALUES ('$first', '$last', '$uid', '$pwd')";
+        $sql = "INSERT INTO user (first, last, email, uid, pwd) 
+        VALUES ('$first', '$last', '$email', '$uid', '$pwd')";
 
         $result = mysqli_query($conn, $sql);
 
