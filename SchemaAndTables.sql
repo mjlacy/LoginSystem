@@ -1,11 +1,14 @@
+DROP SCHEMA loginsystem;
+
 CREATE SCHEMA loginsystem;
 
-CREATE TABLE loginsystem.user (
+CREATE TABLE loginsystem.users (
   id INT NOT NULL AUTO_INCREMENT,
   first VARCHAR(128) NOT NULL,
   last VARCHAR(128) NOT NULL,
   uid VARCHAR(128) NOT NULL,
   pwd VARCHAR(1000) NOT NULL,
+  email VARCHAR(200) NOT NULL,
   PRIMARY KEY (id));
 
 CREATE TABLE loginsystem.inventory (

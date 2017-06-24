@@ -2,15 +2,19 @@
 session_start();
 include '../dbh.php';
 
-$uid = mysqli_real_escape_string($conn, $_POST['uid']); //Prevents SQL Injection
-$pwd = mysqli_real_escape_string($conn, $_POST['pwd']); //Prevents SQL Injection
+$uid = mysqli_real_escape_string($conn, $_POST['uid']);
+$pwd = mysqli_real_escape_string($conn, $_POST['pwd']);
 
-$sql = "SELECT * FROM user WHERE uid='$uid' AND pwd = '$pwd' ";
+$stmt = $conn->prepare("SELECT * FROM user WHERE uid= ? AND pwd = ?");
+$stmt->bind_param("ss", $username, $password);
 
-$result = mysqli_query($conn, $sql);
+$username = $uid;
+$password = $pwd;
+$stmt->execute();
+
+$result = $stmt->get_result();
 
 if(!$row = mysqli_fetch_assoc($result)){
-	//echo "Your username or password is incorrect!";
     header("Location: ../index.php?error=input");
 } else {
 	$_SESSION['id'] = $row['id'];
