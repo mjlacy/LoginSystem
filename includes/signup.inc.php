@@ -30,14 +30,14 @@ if(empty($pwd)){
     exit();
 }
 else{
-    $sql="SELECT uid FROM user WHERE uid='$uid'";
+    $sql="SELECT uid FROM users WHERE uid='$uid'";
     $result = mysqli_query($conn, $sql);
     $uidcheck = mysqli_num_rows($result);
     if($uidcheck > 0){
         header("Location: ../signup.php?error=username");
         exit();
     }
-    $sql="SELECT email FROM user WHERE email='$email'";
+    $sql="SELECT email FROM users WHERE email='$email'";
     $result = mysqli_query($conn, $sql);
     $emailcheck = mysqli_num_rows($result);
     if($emailcheck > 0){
@@ -45,7 +45,7 @@ else{
         exit();
     }
     else{
-        $sql = "INSERT INTO user (first, last, email, uid, pwd) 
+        $sql = "INSERT INTO users (first, last, email, uid, pwd) 
         VALUES ('$first', '$last', '$email', '$uid', '$pwd')";
 
         $result = mysqli_query($conn, $sql);
