@@ -6,9 +6,11 @@ CREATE TABLE loginsystem.users (
   id INT NOT NULL AUTO_INCREMENT,
   first VARCHAR(128) NOT NULL,
   last VARCHAR(128) NOT NULL,
-  uid VARCHAR(128) NOT NULL,
+  uid VARCHAR(128) UNIQUE NOT NULL,
   pwd VARCHAR(1000) NOT NULL,
   email VARCHAR(200) NOT NULL,
+  confirmed BOOLEAN,
+  confirmedCode INT,
   PRIMARY KEY (id));
 
 CREATE TABLE loginsystem.inventory (
