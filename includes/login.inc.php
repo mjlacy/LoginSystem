@@ -5,7 +5,7 @@ include '../dbh.php';
 $uid = mysqli_real_escape_string($conn, $_POST['uid']);
 $pwd = mysqli_real_escape_string($conn, $_POST['pwd']);
 
-$stmt = $conn->prepare("SELECT * FROM user WHERE uid= ? AND pwd = ?");
+$stmt = $conn->prepare("SELECT * FROM users WHERE uid= ? AND pwd = ?");
 $stmt->bind_param("ss", $username, $password);
 
 $username = $uid;

@@ -30,14 +30,14 @@ if(empty($pwd)){
     exit();
 }
 else{
-    $sql="SELECT uid FROM user WHERE uid='$uid'";
+    $sql="SELECT uid FROM users WHERE uid='$uid'";
     $result = mysqli_query($conn, $sql);
     $uidcheck = mysqli_num_rows($result);
     if($uidcheck > 0){
         header("Location: ../signup.php?error=username");
         exit();
     }
-    $sql="SELECT email FROM user WHERE email='$email'";
+    $sql="SELECT email FROM users WHERE email='$email'";
     $result = mysqli_query($conn, $sql);
     $emailcheck = mysqli_num_rows($result);
     if($emailcheck > 0){
@@ -45,12 +45,21 @@ else{
         exit();
     }
     else{
-        $sql = "INSERT INTO user (first, last, email, uid, pwd) 
-        VALUES ('$first', '$last', '$email', '$uid', '$pwd')";
+
+        $confirmCode = rand();
+
+        $sql = "INSERT INTO users (first, last, uid, pwd, email, confirmed, confirmCode) 
+        VALUES ('$first', '$last', '$uid', '$pwd', '$email', FALSE , '$confirmCode')";
 
         $result = mysqli_query($conn, $sql);
 
-        header("Location: ../index.php");
+        $message = "Thanks for signing up, please click the following link to confirm your email address.
+         http://localhost/loginsystem/emailconfirm.php?uid=$uid&code=$confirmCode";
+
+        mail($email, $_REQUEST["Confirm Email for Login System"], $_REQUEST[$message], "From: ". $_REQUEST['DoNotReply@LoginSystem.com']);
+
+        echo "Thanks for signing up, please check your email for an account confirmation link.";
+        //header("Location: ../index.php");
     }
 }
-?>
+?>gi
