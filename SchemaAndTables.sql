@@ -8,7 +8,8 @@ CREATE TABLE loginsystem.users (
   last VARCHAR(128) NOT NULL,
   uid VARCHAR(128) UNIQUE NOT NULL,
   pwd VARCHAR(1000) NOT NULL,
-  email VARCHAR(200) NOT NULL,
+  email VARCHAR(200) UNIQUE NOT NULL,
+  type VARCHAR(10) NOT NULL,
   PRIMARY KEY (id));
 
 CREATE TABLE loginsystem.inventory (
