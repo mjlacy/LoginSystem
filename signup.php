@@ -4,12 +4,15 @@
     $url ="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
     if(strpos($url, 'error=empty') !== false){
         echo "<br>&nbsp&nbspPlease fill out all fields.<br>";
+        exit();
     }
     elseif(strpos($url, 'error=username') !== false){
         echo "<br>&nbsp&nbspUsername already in use.<br>";
+        exit();
     }
     elseif(strpos($url, 'error=email') !== false){
         echo "<br>&nbsp&nbspThere is already an account with this email address.<br>";
+        exit();
     }
 
     if(isset($_SESSION['id'])){

@@ -42,6 +42,18 @@
             </tr><br>";
         }
 
+        $currentID = $_SESSION['id'];
+        $sql = "SELECT type FROM users WHERE id='$currentID'";
+        $result = mysqli_query($conn, $sql);
+        $row = $result->fetch_assoc();
+        $acctType = $row['type'];
+
+        if ($acctType == "Admin") {
+            echo "&nbsp&nbsp<form action='usersTable.php'>
+                   <input type='submit' value='See Users'/>
+                  </form>";
+        }
+
 //        echo "&nbsp";
 //
 //        echo "<form action='addInventory.php'>

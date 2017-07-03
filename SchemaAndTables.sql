@@ -9,7 +9,7 @@ CREATE TABLE loginsystem.users (
   uid VARCHAR(128) UNIQUE NOT NULL,
   pwd VARCHAR(1000) NOT NULL,
   email VARCHAR(200) UNIQUE NOT NULL,
-  type VARCHAR(10) NOT NULL,
+  type VARCHAR(15) NOT NULL,
   PRIMARY KEY (id));
 
 CREATE TABLE loginsystem.inventory (

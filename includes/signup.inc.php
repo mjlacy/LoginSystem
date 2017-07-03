@@ -44,13 +44,12 @@ else{
         header("Location: ../signup.php?error=email");
         exit();
     }
-    else{
-        $sql = "INSERT INTO users (first, last, email, uid, pwd) 
-        VALUES ('$first', '$last', '$email', '$uid', '$pwd')";
+
+        $sql = "INSERT INTO users (first, last, email, uid, pwd, type) 
+        VALUES ('$first', '$last', '$email', '$uid', '$pwd', 'Standard User')";
 
         $result = mysqli_query($conn, $sql);
 
         header("Location: ../index.php");
-    }
 }
 ?>
