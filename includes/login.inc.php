@@ -17,7 +17,17 @@ $result = $stmt->get_result();
 if(!$row = mysqli_fetch_assoc($result)){
     header("Location: ../index.php?error=input");
 } else {
-	$_SESSION['id'] = $row['id'];
-	header("Location: ../index.php");
+    $sql = "SELECT confirmed FROM users WHERE id='$id'";
+    $result = mysqli_query($conn, $sql);
+    $row = $result->fetch_assoc();
+    $confirmed = $row['confirmed'];
+
+    if ($confirmed != 1) {
+        header("Location: ../index.php?error=unregistered");
+    }
+    else{
+        $_SESSION['id'] = $row['id'];
+        header("Location: ../index.php");
+    }
 }
 ?>

@@ -10,7 +10,7 @@ CREATE TABLE loginsystem.users (
   pwd VARCHAR(1000) NOT NULL,
   email VARCHAR(200) NOT NULL,
   confirmed BOOLEAN,
-  confirmedCode INT,
+  confirmCode INT,
   PRIMARY KEY (id));
 
 CREATE TABLE loginsystem.inventory (

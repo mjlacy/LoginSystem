@@ -54,12 +54,13 @@ else{
         $result = mysqli_query($conn, $sql);
 
         $message = "Thanks for signing up, please click the following link to confirm your email address.
-         http://localhost/loginsystem/emailconfirm.php?uid=$uid&code=$confirmCode";
+         http://localhost/loginsystem/emailConfirm.php?uid=$uid&confirmCode=$confirmCode";
 
-        mail($email, $_REQUEST["Confirm Email for Login System"], $_REQUEST[$message], "From: ". $_REQUEST['DoNotReply@LoginSystem.com']);
+        mail($email, "Confirm Email for Login System", $message, "From: ". 'DoNotReply@LoginSystem.com');
 
-        echo "Thanks for signing up, please check your email for an account confirmation link.";
+        header("Location: ../signup.php?error=unregistered");
+
         //header("Location: ../index.php");
     }
 }
-?>gi
+?>

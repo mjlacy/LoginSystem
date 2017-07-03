@@ -11,6 +11,9 @@
     elseif(strpos($url, 'error=email') !== false){
         echo "<br>There is already an account with this email address.<br>";
     }
+    elseif(strpos($url, 'error=unregistered') !== false){
+        echo "<br>&nbsp&nbspThanks for signing up, please check your email for an account confirmation link.<br>";
+    }
 
     if(isset($_SESSION['id'])){
         echo "<br><p class='pCenter'>You are already logged in!</p>";

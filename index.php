@@ -22,8 +22,6 @@
 	include 'header.php';
 	include 'dbh.php';
 
-	//echo "<br>";
-
 	if(isset($_SESSION['id'])){
         $sql="SELECT * FROM inventory";
         $result = mysqli_query($conn, $sql);
@@ -65,8 +63,11 @@
     } else {
         $url ="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
         if(strpos($url, 'error=input') !== false){
-            echo "<br> &nbsp Your username or password is incorrect!";
-        } else {
+            echo "<br> &nbsp&nbsp Your username or password is incorrect!";
+        }
+        elseif(strpos($url, 'error=unregistered') !== false){
+            echo "<br> &nbsp&nbsp You must register your email address to login.";
+        }else {
             echo "<br> &nbsp Welcome to the PHP System! Please log in or create an account.";
             echo '<br><br>&nbsp<img src="http://www.pngall.com/wp-content/uploads/2016/07/Success-Free-Download-PNG.png" 
             width="280" height="125" title="Logo of a company" alt="Logo of a company"/>';
