@@ -3,11 +3,11 @@ session_start();
 
 include '../dbh.php';
 
-$first = $_POST['first'];
-$last = $_POST['last'];
-$email = $_POST['email'];
-$uid = $_POST['uid'];
-$pwd = $_POST['pwd'];
+$first = mysqli_real_escape_string($conn, $_POST['first']);
+$last = mysqli_real_escape_string($conn, $_POST['last']);
+$email = mysqli_real_escape_string($conn, $_POST['email']);
+$uid = mysqli_real_escape_string($conn, $_POST['uid']);
+$pwd = mysqli_real_escape_string($conn, $_POST['pwd']);
 
 if(empty($first)){
     header("Location: ../signup.php?error=empty");
@@ -45,13 +45,20 @@ else{
         exit();
     }
     else{
+        $stmt = $conn->prepare("INSERT INTO users (first, last, uid, pwd, email, confirmed, confirmCode) 
+        VALUES (?, ?, ?, ?, ?, ?, ?)");
 
+        $stmt->bind_param("sssssss", $firstname, $lastname, $username, $password, $email2, $confirmed, $confirmCode);
+
+        $firstname = $first;
+        $lastname = $last;
+        $username = $uid;
+        $password = $pwd;
+        $email2 = $email;
+        $confirmed = FALSE;
         $confirmCode = rand();
 
-        $sql = "INSERT INTO users (first, last, uid, pwd, email, confirmed, confirmCode) 
-        VALUES ('$first', '$last', '$uid', '$pwd', '$email', FALSE , '$confirmCode')";
-
-        $result = mysqli_query($conn, $sql);
+        $stmt->execute();
 
         $message = "Thanks for signing up, please click the following link to confirm your email address.
          http://localhost/loginsystem/emailConfirm.php?uid=$uid&confirmCode=$confirmCode";
