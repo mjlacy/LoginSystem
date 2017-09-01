@@ -11,6 +11,7 @@ CREATE TABLE loginsystem.users (
   email VARCHAR(200) NOT NULL,
   confirmed BOOLEAN,
   confirmCode INT,
+  pwdRecoveryKey VARCHAR(100),
   PRIMARY KEY (id));
 
 CREATE TABLE loginsystem.inventory (

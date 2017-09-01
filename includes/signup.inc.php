@@ -46,9 +46,9 @@ else{
     }
     else{
         $stmt = $conn->prepare("INSERT INTO users (first, last, uid, pwd, email, confirmed, confirmCode) 
-        VALUES (?, ?, ?, ?, ?, ?, ?)");
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
-        $stmt->bind_param("sssssss", $firstname, $lastname, $username, $password, $email2, $confirmed, $confirmCode);
+        $stmt->bind_param("ssssssss", $firstname, $lastname, $username, $password, $email2, $confirmed, $confirmCode, $pwdRecoveryKey);
 
         $firstname = $first;
         $lastname = $last;
@@ -57,6 +57,7 @@ else{
         $email2 = $email;
         $confirmed = FALSE;
         $confirmCode = rand();
+        $pwdRecoveryKey = rand();
 
         $stmt->execute();
 

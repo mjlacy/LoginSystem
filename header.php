@@ -43,7 +43,8 @@
                         <input type='password' name='pwd' placeholder='Password'>
                         <button type='submit'>&nbsp&nbsp&nbspLog In</button>
                     </form>
-                    <li><a href=\"signup.php\">Sign Up</a></li>";
+                    <li><a href=\"signup.php\">Sign Up</a></li>
+                    <li><a href=\"forgotPassword.php\">Forgot Password</a></li>";
                 }
             ?>
 		</ul>

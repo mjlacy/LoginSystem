@@ -1,4 +1,4 @@
-INSERT INTO `loginsystem`.`users` (`id`, `first`, `last`, `uid`, `pwd`, `email`, `confirmed`, `confirmCode`) VALUES ('1', 'Michael', 'Lacy', 'admin', '1234', 'mjlacy.dude@gmail.com', '1', NULL);
+INSERT INTO `loginsystem`.`users` (`id`, `first`, `last`, `uid`, `pwd`, `email`, `confirmed`, `confirmCode`, `pwdRecoveryKey`) VALUES ('1', 'Michael', 'Lacy', 'admin', '1234', 'mjlacy.dude@gmail.com', '1', NULL, 'manualKey');
 
 INSERT INTO `loginsystem`.`inventory` (`inv_id`, `description`, `quantityStored`, `quantityOrdered`) VALUES (1, 'Bolt', 3, 5);
 

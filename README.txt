@@ -8,4 +8,4 @@ If when adding something to the system, a non-integer is put in an integer-only
 column(Inventory.QuantityOrdered, Inventory.QuantityStored), that value will be ignored and a 0
 will be inserted into the database in its place.
 
-The home page is on http://localhost/loginpage/
+The home page is on http://localhost/loginsystem/
