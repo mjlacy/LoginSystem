@@ -54,6 +54,10 @@
                   </form>";
         }
 
+        echo "&nbsp&nbsp<form action='acctInfo.php'>
+                   <input type='submit' value='Account Info'/>
+                  </form>";
+
 //        echo "&nbsp";
 //
 //        echo "<form action='addInventory.php'>
@@ -85,6 +89,3 @@
         }
     }
 ?>
-
-</body>
-</html>
