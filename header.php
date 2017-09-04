@@ -38,12 +38,14 @@
 //	                <button>Log Out</button>
 //                    </form>";
                 } else {
-                    echo"<form action='includes/login.inc.php' method='POST'>
-                        <input type='text' name='uid' placeholder='Username'>
-                        <input type='password' name='pwd' placeholder='Password'>
-                        <button type='submit'>&nbsp&nbsp&nbspLog In</button>
-                    </form>
-                    <li><a href=\"signup.php\">Sign Up</a></li>";
+
+                    echo "<li><a href='login.php'>Log In</a></li>";
+//                    echo"<form action='includes/login.inc.php' method='POST'>
+//                        <input type='text' name='uid' placeholder='Username'>
+//                        <input type='password' name='pwd' placeholder='Password'>
+//                        <button type='submit'>&nbsp&nbsp&nbspLog In</button>
+//                    </form>
+                    echo "<li><a href=\"signup.php\">Sign Up</a></li>";
                 }
             ?>
 		</ul>
