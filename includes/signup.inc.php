@@ -44,12 +44,12 @@ else{
         header("Location: ../signup.php?error=email");
         exit();
     }
+    $encrypted_password = password_hash($pwd, PASSWORD_DEFAULT);
+    $sql = "INSERT INTO users (first, last, email, uid, pwd, type) 
+    VALUES ('$first', '$last', '$email', '$uid', '$encrypted_password', 'Standard User')";
 
-        $sql = "INSERT INTO users (first, last, email, uid, pwd, type) 
-        VALUES ('$first', '$last', '$email', '$uid', '$pwd', 'Standard User')";
+    $result = mysqli_query($conn, $sql);
 
-        $result = mysqli_query($conn, $sql);
-
-        header("Location: ../index.php");
+    header("Location: ../index.php");
 }
 ?>

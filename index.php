@@ -53,7 +53,7 @@
             echo "<br> &nbsp Welcome to the PHP System! Please log in or create an account.";
             echo '<br><br>&nbsp<img src="http://www.pngall.com/wp-content/uploads/2016/07/Success-Free-Download-PNG.png"
             width="280" height="125" title="Logo of a company" alt="Logo of a company"/>
-            <div class="dropdown">
+            <!--<div class="dropdown">
              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                Dropdown
                <span class="caret"></span>
@@ -65,7 +65,7 @@
                <li role="separator" class="divider"></li>
                <li><a href="#">Separated link</a></li>
              </ul>
-           </div>';
+           </div>-->';
         }
     }
 ?>
