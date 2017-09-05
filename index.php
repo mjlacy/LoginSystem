@@ -11,22 +11,32 @@
     include 'header.php';
 	include 'dbh.php';
 
+	$columnNames= array();
+
 	if(isset($_SESSION['id'])){
-        $sql="SELECT * FROM inventory";
+        $sql="SHOW COLUMNS FROM inventory";
         $result = mysqli_query($conn, $sql);
-        echo "<table class ='inventory'><tr><th>Id No.</th>
-        <th>Description</th>
-        <th>Quantity Stored</th>
-        <th>Quantity Ordered</th></tr>";
         while($row = mysqli_fetch_array($result)) {
-            echo "<tr>
-                <td> ".$row['inv_id']."</td>
-                <td> ".$row['description']."</td>
-                <td> ".$row['quantityStored']."</td>
-                <td> ".$row['quantityOrdered']."</td>
-                <td> <a href='editInventory.php?edit=$row[inv_id]'>Edit<br></td>
+            array_push($columnNames, $row['Field']);
+        }
+
+	    $sql="SELECT * FROM inventory";
+        $result = mysqli_query($conn, $sql);
+        echo "<table class ='inventory'>";
+        for($count = 0; $count< count($columnNames); $count++){
+            echo "<th>$columnNames[$count]</th>";
+        }
+
+        while($row = mysqli_fetch_array($result)) {
+            echo "
+            <tr>";
+            for($count = 0; $count< count($columnNames); $count++){
+                echo '<td> '.$row[$columnNames[$count]].'</td>';
+            }
+                echo "<td> <a href='editInventory.php?edit=$row[inv_id]'>Edit<br></td>
                 <td> <a href='includes/deleteInventory.inc.php?delete=$row[inv_id]'>Delete<br></td>
-            </tr><br>";
+            </tr>";
+            $count++;
         }
 
         $currentID = $_SESSION['id'];
@@ -44,6 +54,12 @@
         echo "&nbsp&nbsp<form action='acctInfo.php'>
                    <input type='submit' value='Account Info'/>
                   </form>";
+
+        if ($acctType == "Admin") {
+            echo "&nbsp&nbsp<form action='addColumn.php'>
+                   <input type='submit' value='Add Column'/>
+                  </form>";
+        }
 
     } else {
         $url ="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
