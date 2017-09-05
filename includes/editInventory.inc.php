@@ -16,7 +16,7 @@ while($row = mysqli_fetch_array($result)) {
 
 $sql = "UPDATE inventory SET" . " ";
 for($count = 0; $count< count($columnNames); $count++){
-   $sql .= $columnNames[$count] . " = '" . $receivedValues[$count]. "' ";
+   $sql .= "`" . $columnNames[$count] . "`" . " = '" . $receivedValues[$count]. "' ";
    if($count !== count($columnNames) -1){
        $sql .= ", ";
    }
