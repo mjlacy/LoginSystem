@@ -28,7 +28,7 @@ if(isset($_SESSION['id'])) {
                 <td> " . $row['email'] . "</td>
                 <td> " . $row['type'] . " </td>
                 <td> <a href='editUser.php?edit=$row[id]'>Edit</a><br></td>
-                <td> <a href='includes/deleteUser.inc.php?delete=$row[id]'></a>Delete<br></td>
+                <td> <a href='includes/deleteUser.inc.php?delete=$row[id]'>Delete<br></td>
             </tr><br>";
         }
     }
