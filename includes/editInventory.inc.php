@@ -4,12 +4,24 @@ session_start();
 include '../dbh.php';
 
 $inv_id = $_POST['inv_id'];
-$description = $_POST['description'];
-$quantityStored = $_POST['quantityStored'];
-$quantityOrdered = $_POST['quantityOrdered'];
+$columnNames = array();
+$receivedValues = array();
 
-$sql = "UPDATE inventory SET description = '$description', quantityStored = '$quantityStored', quantityOrdered = '$quantityOrdered'
-WHERE inv_id = '$inv_id'";
+$sql="SHOW COLUMNS FROM inventory";
+$result = mysqli_query($conn, $sql);
+while($row = mysqli_fetch_array($result)) {
+    array_push($columnNames, $row['Field']);
+    array_push($receivedValues, $_POST[$row['Field']]);
+}
+
+$sql = "UPDATE inventory SET" . " ";
+for($count = 0; $count< count($columnNames); $count++){
+   $sql .= $columnNames[$count] . " = '" . $receivedValues[$count]. "' ";
+   if($count !== count($columnNames) -1){
+       $sql .= ", ";
+   }
+}
+$sql .= "WHERE inv_id = '$inv_id';";
 
 $result = mysqli_query($conn, $sql);
 

@@ -28,8 +28,7 @@
         }
 
         while($row = mysqli_fetch_array($result)) {
-            echo "
-            <tr>";
+            echo "<tr>";
             for($count = 0; $count< count($columnNames); $count++){
                 echo '<td> '.$row[$columnNames[$count]].'</td>';
             }
