@@ -23,29 +23,12 @@
 			<li>&nbsp<a href="index.php">Home</a></li>
             <?php
                 if(isset($_SESSION['id'])){
-                    echo "<li><a href=\"addInventory.php\">Add to Inventory</a></li>";
-//                    echo "<form action='addInventory.php'>
-//                   <input type='submit' value='Add to Inventory'/>
-//                    </form>";
-
-                    echo "<li><a href=\"searchInventoryForm.php\">Search Inventory</a></li>";
-//                    echo "<form action='searchInventoryForm.php'>
-//                   <input type='submit' value='Search Inventory'/>
-//                    </form>";
-
-                    echo "<li><a href='includes/logout.inc.php'>Log Out</a></li>";
-//                    echo "<form action='includes/logout.inc.php'>
-//	                <button>Log Out</button>
-//                    </form>";
+                    echo "<li><a href=\"addInventory.php\">Add to Inventory</a></li>
+                          <li><a href=\"searchInventoryForm.php\">Search Inventory</a></li>
+                          <li><a href=\"signup.php\">Create New User</a></li>
+                          <li><a href='includes/logout.inc.php'>Log Out</a></li>";
                 } else {
-
                     echo "<li><a href='login.php'>Log In</a></li>";
-//                    echo"<form action='includes/login.inc.php' method='POST'>
-//                        <input type='text' name='uid' placeholder='Username'>
-//                        <input type='password' name='pwd' placeholder='Password'>
-//                        <button type='submit'>&nbsp&nbsp&nbspLog In</button>
-//                    </form>
-                    echo "<li><a href=\"signup.php\">Sign Up</a></li>";
                 }
             ?>
 		</ul>

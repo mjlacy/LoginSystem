@@ -10,10 +10,6 @@
         echo "<br>&nbsp&nbspUsername already in use.<br>";
         exit();
     }
-    elseif(strpos($url, 'error=email') !== false){
-        echo "<br>&nbsp&nbspThere is already an account with this email address.<br>";
-        exit();
-    }
 
     if(isset($_SESSION['id'])){
         echo "<br><p class='pCenter'>You are already logged in!</p>";
@@ -21,7 +17,6 @@
         echo "<br><form class='signupform' action='includes/signup.inc.php' method='POST'>
         &nbsp&nbsp<input type='text' name='first' placeholder='First Name'><br>
         &nbsp&nbsp<input type='text' name='last' placeholder='Last Name'><br>
-        &nbsp&nbsp<input type='text' name='email' placeholder='Email'><br>
         &nbsp&nbsp<input type='text' name='uid' placeholder='Username'><br>
         &nbsp&nbsp<input type='password' name='pwd' placeholder='Password'><br><br>
         &nbsp&nbsp<button type='submit'>Sign Up</button>

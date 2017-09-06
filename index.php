@@ -14,6 +14,7 @@
 	$columnNames= array();
 
 	if(isset($_SESSION['id'])){
+	    echo "<br>";
         $sql="SHOW COLUMNS FROM inventory";
         $result = mysqli_query($conn, $sql);
         while($row = mysqli_fetch_array($result)) {
@@ -38,27 +39,17 @@
             $count++;
         }
 
-        $currentID = $_SESSION['id'];
-        $sql = "SELECT type FROM users WHERE id='$currentID'";
-        $result = mysqli_query($conn, $sql);
-        $row = $result->fetch_assoc();
-        $acctType = $row['type'];
+        echo "&nbsp&nbsp<form action='usersTable.php'>
+               <input type='submit' value='See Users'/>
+              </form>";
 
-        if ($acctType == "Admin") {
-            echo "&nbsp&nbsp<form action='usersTable.php'>
-                   <input type='submit' value='See Users'/>
-                  </form>";
-        }
-
-        echo "&nbsp&nbsp<form action='acctInfo.php'>
-                   <input type='submit' value='Account Info'/>
+        echo "&nbsp&nbsp<form action='newPassword.php'>
+                   <input type='submit' value='Change My Password'/>
                   </form>";
 
-        if ($acctType == "Admin") {
-            echo "&nbsp&nbsp<form action='addColumn.php'>
-                   <input type='submit' value='Add Column'/>
-                  </form>";
-        }
+        echo "&nbsp&nbsp<form action='addColumn.php'>
+               <input type='submit' value='Add Column'/>
+              </form>";
 
     } else {
         $url ="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
