@@ -20,8 +20,7 @@ if(isset($_SESSION['id'])) {
             for($count = 0; $count< count($columnNames); $count++){
                 echo "&nbsp&nbsp<label>$columnNames[$count]</label> <br>&nbsp&nbsp<input type='text' name=".$columnNames[$count]." value=".$row[$columnNames[$count]]."><br><br>";
             }
-            echo "&nbsp&nbsp<button type='submit'>Submit</button>
-         </form>";
+            echo "&nbsp&nbsp<button type='submit'>Submit</button></form>";
 }
 else{
     echo "<br> Please log in to manipulate the database";

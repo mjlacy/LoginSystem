@@ -12,8 +12,6 @@
     }
 
     if(isset($_SESSION['id'])){
-        echo "<br><p class='pCenter'>You are already logged in!</p>";
-    } else {
         echo "<br><form class='signupform' action='includes/signup.inc.php' method='POST'>
         &nbsp&nbsp<input type='text' name='first' placeholder='First Name'><br>
         &nbsp&nbsp<input type='text' name='last' placeholder='Last Name'><br>
