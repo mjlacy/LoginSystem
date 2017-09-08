@@ -5,10 +5,6 @@ include '../dbh.php';
 
 $name = $_POST['name'];
 
-$name = str_replace(" ","", $name);
-
-echo $name;
-
 $sql = "ALTER TABLE inventory ADD `$name` VARCHAR(100);";
 
 $result = mysqli_query($conn, $sql);

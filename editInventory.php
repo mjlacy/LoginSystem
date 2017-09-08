@@ -18,7 +18,13 @@ if(isset($_SESSION['id'])) {
     echo "<form action ='includes/editInventory.inc.php' method ='POST'><br>
             <input type='hidden' name='inv_id' value = $inv_id>";
             for($count = 0; $count< count($columnNames); $count++){
-                echo "&nbsp&nbsp<label>$columnNames[$count]</label> <br>&nbsp&nbsp<input type='text' name=".$columnNames[$count]." value=".$row[$columnNames[$count]]."><br><br>";
+                $columnName = $columnNames[$count];
+                $inputs = "&nbsp&nbsp<label>$columnNames[$count]</label> <br>&nbsp&nbsp<input type='text' name=";
+                    if(strpos($columnName,' ')){
+                        $columnName = str_replace(" ","", $columnName);
+                    }
+                    $inputs .= $columnName." value=".$row[$columnNames[$count]]."><br><br>";
+                    echo $inputs;
             }
             echo "&nbsp&nbsp<button type='submit'>Submit</button></form>";
 }

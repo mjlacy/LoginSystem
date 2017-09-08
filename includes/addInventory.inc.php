@@ -11,17 +11,23 @@ $sql="SHOW COLUMNS FROM inventory";
 $result = mysqli_query($conn, $sql);
 while($row = mysqli_fetch_array($result)) {
     array_push($columnNames, $row['Field']);
-    array_push($receivedValues, $_POST[$row['Field']]);
+    if(strpos($row['Field'],' ')){
+        $columnName = str_replace(" ","", $row['Field']);
+        array_push($receivedValues, $_POST[$columnName]);
+    }
+    else{
+        array_push($receivedValues, $_POST[$row['Field']]);
+    }
 }
 
 $sql = "INSERT INTO inventory (";
 
 for($count = 1; $count< count($columnNames); $count++){
     if($count < count($columnNames) -1){
-        $sql .= $columnNames[$count] . ", ";
+        $sql .= "`" . $columnNames[$count] . "`" . ", ";
     }
     else{
-        $sql .= $columnNames[$count] . ") ";
+        $sql .= "`" . $columnNames[$count] . "`" . ") ";
     }
 }
 
