@@ -15,7 +15,7 @@ if(isset($_SESSION['id'])) {
             <td> " . $row['last'] . "</td>
             <td> " . $row['uid'] . "</td>
             <td> <a href='editUser.php?edit=$row[id]'>Edit</a><br></td>
-            <td> <a href='deleteUser.php?delete=$row[id]'>Delete<br></td>
+            <td> <a href='deleteUser.php?id=$row[id]&uid=$row[uid]'>Delete<br></td>
         </tr>";
     }
 }

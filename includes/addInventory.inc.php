@@ -3,12 +3,38 @@ session_start();
 
 include '../dbh.php';
 
-$description = $_POST['description'];
-$quantityStored = $_POST['quantityStored'];
-$quantityOrdered = $_POST['quantityOrdered'];
+error_reporting(E_ALL ^ E_NOTICE);
+$columnNames = array();
+$receivedValues = array();
 
-$sql = "INSERT INTO inventory (description, quantityStored, quantityOrdered) 
-        VALUES ('$description', '$quantityStored', '$quantityOrdered')";
+$sql="SHOW COLUMNS FROM inventory";
+$result = mysqli_query($conn, $sql);
+while($row = mysqli_fetch_array($result)) {
+    array_push($columnNames, $row['Field']);
+    array_push($receivedValues, $_POST[$row['Field']]);
+}
+
+$sql = "INSERT INTO inventory (";
+
+for($count = 1; $count< count($columnNames); $count++){
+    if($count < count($columnNames) -1){
+        $sql .= $columnNames[$count] . ", ";
+    }
+    else{
+        $sql .= $columnNames[$count] . ") ";
+    }
+}
+
+$sql .= "VALUES (";
+
+for($count = 1; $count< count($columnNames); $count++){
+    if($count < count($columnNames) -1){
+        $sql .= "'" . $receivedValues[$count] . "'" . ", ";
+    }
+    else{
+        $sql .= "'" . $receivedValues[$count] . "'" . ");";
+    }
+}
 
 $result = mysqli_query($conn, $sql);
 

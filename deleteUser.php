@@ -2,10 +2,11 @@
 
 include 'header.php';
 
-$id = $_GET['delete'];
+$id = $_GET['id'];
+$uid = $_GET['uid'];
 
 if(isset($_SESSION['id'])) {
-    echo "Are you sure you want to delete user #".$id."? This action cannot be undone.
+    echo "Are you sure you want to delete ".$uid."? This action cannot be undone.
         <form action ='includes/deleteUser.inc.php' method ='POST'><br>
             <input type='hidden' name='id' value = $id>
             <button type='submit'>Delete</button>

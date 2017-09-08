@@ -34,7 +34,7 @@
                 echo '<td> '.$row[$columnNames[$count]].'</td>';
             }
                 echo "<td> <a href='editInventory.php?edit=$row[inv_id]'>Edit<br></td>
-                <td> <a href='deleteInventory.php?delete=$row[inv_id]'>Delete<br></td>
+                <td> <a href='deleteInventory.php?id=$row[inv_id]&description=$row[description]'>Delete<br></td>
             </tr>";
             $count++;
         }
