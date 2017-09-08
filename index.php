@@ -31,10 +31,27 @@
         while($row = mysqli_fetch_array($result)) {
             echo "<tr>";
             for($count = 0; $count< count($columnNames); $count++){
+                $sql2 = "SELECT DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS 
+                WHERE table_name = 'inventory' AND COLUMN_NAME = '$columnNames[$count]';";
+                $result2 = mysqli_query($conn, $sql2);
+                $rowType = mysqli_fetch_array($result2);
+                if($rowType['DATA_TYPE'] == "tinyint"){
+                    if($row[$columnNames[$count]] == 0 && $row[$columnNames[$count]] !== null){
+                        echo '<td>No</td>';
+                    }
+                    elseif($row[$columnNames[$count]] !== null){
+                        echo '<td>Yes</td>';
+                    }
+                    else{
+                        echo '<td></td>';
+                    }
+                }
+                else{
                 echo '<td> '.$row[$columnNames[$count]].'</td>';
+                }
             }
                 echo "<td> <a href='editInventory.php?edit=$row[inv_id]'>Edit<br></td>
-                <td> <a href='deleteInventory.php?id=$row[inv_id]&description=$row[description]'>Delete<br></td>
+                <td> <a href='deleteInventory.php?id=$row[inv_id]&item=$row[Item]'>Delete<br></td>
             </tr>";
             $count++;
         }

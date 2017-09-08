@@ -3,10 +3,10 @@
 include 'header.php';
 
 $inv_id = $_GET['id'];
-$description = $_GET['description'];
+$item = $_GET['item'];
 
 if(isset($_SESSION['id'])) {
-    echo "Are you sure you want to delete ".$description."? This action cannot be undone.
+    echo "Are you sure you want to delete ".$item."? This action cannot be undone.
         <form action ='includes/deleteInventory.inc.php' method ='POST'><br>
             <input type='hidden' name='inv_id' value = $inv_id>
             <button type='submit'>Delete</button>

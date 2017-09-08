@@ -4,8 +4,14 @@ session_start();
 include '../dbh.php';
 
 $name = $_POST['name'];
+$type = $_POST['type'];
 
-$sql = "ALTER TABLE inventory ADD `$name` VARCHAR(100);";
+if($type == "varchar"){
+    $sql = "ALTER TABLE inventory ADD `$name` VARCHAR(100);";
+}
+elseif($type = "tinyint"){
+    $sql = "ALTER TABLE inventory ADD `$name` TINYINT(1);";
+}
 
 $result = mysqli_query($conn, $sql);
 
